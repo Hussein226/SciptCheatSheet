@@ -1,0 +1,7 @@
+Adding a README:
+ - Create a file called `README.md`
+ - touch README.md
+
+Adding a .gitignore
+ - touch .gitignore
+ - commit it up
