@@ -1,0 +1,18 @@
+Setting up virtual env quick cheatsheet:
+
+If not installed:
+Pip3 install virtualenv
+
+Steps:
+1.) python3 -m env {customName}
+2.) source {customName}/bin/activate
+
+If stop virtual env:
+ - deactivate
+
+Installing from requirements.txt file 
+
+- pip3 install -r requirements.txt
+
+Creating a requirements.txt file for all you libraries:
+- pip3 freeze > requirements.txt
