@@ -5,3 +5,22 @@ Adding a README:
 Adding a .gitignore
  - touch .gitignore
  - commit it up
+
+Authenication:
+ - Git has removed authenticating your GitHub using your actual password
+ - You will need to create a personal access token from GitHub to use as your password instead
+
+Publishing an existing project to git:
+ - If you have an existing project and want to publish it remotely to git without issues
+ - when creating a remote repository in git. DO NOT INCLUDE '.gitignores' or 'README.md'. There's probably an easy way around this but for now just make a blank new remote repository. This is because  Adding .gitignores or a read me file will initialize a repo and commit. Meaning, pushing an existing repo to it will cause conflicts (I could be wrong on this completely but this is my understanding)
+ - After a blank remote repository. In your project, you can initialize git and commit locally
+ - You can as well change the main branch to whatever you want by typing:
+	- 'git branch -M main' 
+- You then need to add the remote repository you just created by typing
+	- git remote add origin {url-to-repository}
+	- You will be prompted to log in. Log in using your username and TOKEN stated above
+- You now can push your existing project to the remote repository by typing
+	- 'git push -u origin main'
+	- NOTE: now since your local and remote are synced. You don't necessarily have to use '-u origin main' 
+	- you are now in the main branch and can start creating branches locally but remember that your local branch is not in the remote and will need to include origin {branch name}
+
