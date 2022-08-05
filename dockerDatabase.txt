@@ -1,0 +1,65 @@
+Setting up a docker database:
+
+Install docker through docker.com
+
+Apple m1 silicon chip need to download docker with apple silicon chip option
+Open up docker and accept terms and conditions
+
+
+Creating a docker Postgres database:
+ - docker pull postgres
+ - docker image ls
+	- this will display the images you have downloaded
+- in the docker hub, you can goto images and run the image Postgres 
+- Docker will pretty much set up a whole container with the credentials needed to connect to the database. In fact the database is up and running.
+- You can view the containers either in the hub or typing 'docker container ls' to view all running containers on your local machine
+
+Connecting to database through python:
+ - in terminal install postgresql 'brew install postgresql' (This is allows us to use libraries that require executing the Postgres binary and need this to be installed on your machine. The image for docker is a virtual image needed to set up a database in a container and has nothing to do with Postgres installed by brew.
+
+- After installing postgresql on your machine, you can download a python library that will help you connect your local Postgresql database. Its recommended to have all libraries downloaded from pip package manager in a virtual python environment 
+
+- 'pip3 install psycopg2-binary' (The `-binary` portion is recommended by the documentation as the bare minimum needed to connect and execute sql queries)
+
+- after importing you can use the connect method with parameters being a string of the connection url provided in docker. Congrats you're connected.
+
+PgAdmin4:
+
+PgAdmin4 is a web database interface to view your database through a GUI. This is great for creating and viewing tables you otherwise don't want your code to execute. This is as well nice to see the database
+
+Getting started:
+ - Docker will do the work for you!
+ - Through docker, you can install/run the PgAdmin4 image which then can be ran in container in docker which you will be able to see. Docker already creates a username and password for you to connect through the web interface.
+
+ - In terminal run 'docker run -p 5050:80 -e 'PGADMIN_DEFAULT_EMAIL=pgadmin4@pgadmin.org' -e 'PGADMIN_DEFAULT_PASSWORD=admin' -d --name pgadmin4 dpage/pgadmin4'
+
+- docker run -p 5050:80 means run a container on port 5050
+- -e default email/password is setting up the web interface email/password
+- -d means that you don't want to see the container logs in the terminal when running
+- --name is the name you want to give your container(in this case pgadmin4)
+- The very last parameter is dpage/pgadmin4 which is the image you want to run as a container. Docker will see if you have this image installed. If not, it will automatically install them for you
+- You can access this web interface by typing 'localhost:5050' in your browser to take you to the web interface
+
+- NOTE: This does not mean you can see your local database. This is JUST a web interface for connecting to your local database without installing external applications such as data grip.
+
+Connecting your local database to PgAdmin4:
+ - After you successfully got into PgAdmin4, you will need to connect to your local database server
+ - To do so, right click Servers -> Register -> Server
+ - A prompt will pop up:
+ 	- General -> Name = {Custom database server name}
+	- Connection -> Host name/address = host.docker.internal (The reason why the hostname is host.docker.internal instead of localhost is because we need to remember we're connecting to the database from a CONTAINER which is its own machine and localhost on container 1 is different from localhost on container 2.) Docker understands this and is the reason why we need host.docker.internal so docker knows to bind the local host appropriately
+ 	- Port -> {whatever port your database is running on in docker}
+	- Username -> {userName of database/Default is Postgres}
+	- Password -> {password of database/ Default is postgrespw}
+- Save and boom you have your local host server
+
+- Your server can have multiple databases
+
+- Hierarchy:
+	- Server > Database > Schema > Tables
+	- Localhost (server)
+		- postgres (Database)
+			- public (Schema)
+				- Tables
+
+I
