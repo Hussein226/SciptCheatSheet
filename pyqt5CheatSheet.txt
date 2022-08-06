@@ -1,0 +1,27 @@
+Getting started:
+  - pip3 install pyqt5-tools
+  - if you cant, upgrade pip
+    - pip3 install --upgrade pip
+  
+  You can launch the desiger tool using 'qt5-tools designer'
+
+  After saving, you want to bring the ui to the main directory where your main.py is
+
+  Sample Code to getting started:
+
+
+  from PyQt5.QtWidgets import *
+from PyQt5 import uic
+
+class MyGui(QMainWindow):
+    def __init__(self):
+        super(MyGui, self).__init__()
+        uic.loadUi('gui.ui')
+
+def main():
+    app = QApplication([])
+    window = MyGui()
+    app.exec_()
+
+if __name__ == '__main__':
+    main()
