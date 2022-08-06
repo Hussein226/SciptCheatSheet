@@ -16,7 +16,8 @@ from PyQt5 import uic
 class MyGui(QMainWindow):
     def __init__(self):
         super(MyGui, self).__init__()
-        uic.loadUi('gui.ui')
+        uic.loadUi('gui.ui', self)
+        self.show()
 
 def main():
     app = QApplication([])
