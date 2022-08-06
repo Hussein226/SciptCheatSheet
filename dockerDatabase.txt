@@ -14,6 +14,16 @@ Creating a docker Postgres database:
 - Docker will pretty much set up a whole container with the credentials needed to connect to the database. In fact the database is up and running.
 - You can view the containers either in the hub or typing 'docker container ls' to view all running containers on your local machine
 
+Recommended Approach:
+ - Instead of letting docker create the container do it yourself through the terminal!
+ - 'docker run -d -p 5432:5432 --name postgres-db -e POSTGRES_PASSWORD=postgrespw postgres'
+ - By doing this, you have control over the port mapping and password. Its very important to map your ports otherwise each time you rerun your container, it will be assigned to a new port. Very ANNOYING
+
+ - URL Template:
+	- database://user:pass@ip:port
+	- Ex. postgres://postgres:postgrespw@localhost:55001
+	
+
 Connecting to database through python:
  - in terminal install postgresql 'brew install postgresql' (This is allows us to use libraries that require executing the Postgres binary and need this to be installed on your machine. The image for docker is a virtual image needed to set up a database in a container and has nothing to do with Postgres installed by brew.
 

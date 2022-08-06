@@ -1,0 +1,11 @@
+Postgresql cheat sheet:
+
+ - Creating a table:
+	- CREATE TABLE {schema}.{customTableName} ()
+ - Creating a table with Foreign Key:
+	- CREATE TABLE {schema}.{customTableName} (
+		someId {type} primary key,
+		constraint {constraint_name} FOREIGN KEY(someId) REFERENCES {schema}.{referencedTable}({referencedTablesPrimaryKey) on delete cascade )
+	- constraint name should follow pattern such as 'FK_TABLE2_TABLE1' table1 being the table you want your table2 primary key to reference.
+	- on delete cascade will delete the row if the primary referenced key is deleted from table 1
+
